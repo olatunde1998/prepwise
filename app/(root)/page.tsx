@@ -60,7 +60,7 @@ export default async function Home() {
       <section className="flex flex-col gap-6 mt-8">
         <h2>Your Interviews</h2>
 
-        <div className="flex flex-wrap gap-4 max-lg:flex-col w-full items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:grid-cols-3 w-full items-stretch">
           {hasPastInterviews ? (
             userInterviews?.map((interview) => (
               <InterviewCard
@@ -82,7 +82,7 @@ export default async function Home() {
       <section className="flex flex-col gap-6 mt-8">
         <h2>Take Interviews</h2>
 
-        <div className="flex flex-wrap gap-4 max-lg:flex-col w-full items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:grid-cols-3 w-full items-stretch">
           {hasUpcomingInterviews ? (
             allInterview?.map((interview) => (
               <InterviewCard
