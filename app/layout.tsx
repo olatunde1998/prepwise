@@ -1,6 +1,7 @@
-import { Toaster } from "sonner";
+import SessionProviderPage from "@/providers/session-providers";
 import type { Metadata } from "next";
 import { Mona_Sans } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const monaSans = Mona_Sans({
@@ -21,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${monaSans.variable} antialiased pattern`}>
-        {children}
+        <SessionProviderPage>{children}</SessionProviderPage>
         <Toaster />
       </body>
     </html>
