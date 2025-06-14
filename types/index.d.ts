@@ -41,10 +41,10 @@ interface User {
 interface InterviewCardProps {
   interviewId?: string;
   userId?: string;
-  role: string;
-  type: string;
-  techstack: string[];
-  createdAt?: string;
+  role?: string;
+  type?: string;
+  techstack?: string[];
+  createdAt?: Date;
 }
 
 interface AgentProps {
