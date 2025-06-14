@@ -8,9 +8,9 @@ export async function getUsers() {
   try {
     const users = await prisma.user.findMany({
       include: {
-        posts: true,
+        interview: true,
         _count: {
-          select: { comments: true, posts: true },
+          select: { feedback: true, interview: true },
         },
       },
       orderBy: {
@@ -35,19 +35,19 @@ export async function getUserById(id: string) {
     const user = await prisma.user.findUnique({
       where: { id },
       include: {
-        posts: {
+        interview: {
           orderBy: {
             createdAt: "desc",
           },
         },
-        comments: {
+        feedback: {
           orderBy: {
             createdAt: "desc",
           },
           take: 10,
         },
         _count: {
-          select: { comments: true, posts: true },
+          select: { interview: true, feedback: true },
         },
       },
       cacheStrategy: {
