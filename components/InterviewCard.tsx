@@ -37,13 +37,13 @@ const InterviewCard = async ({
   ).format("MMM D, YYYY");
 
   return (
-    <div className="border-gradient p-0.5 rounded-2xl w-fit w-[360px] max-sm:w-full min-h-96">
-      <div className="flex-center flex-col gap-2 p-7 h-[400px] blue-gradient-dark rounded-lg border-2 border-primary-200/50 flex-1 sm:basis-1/2 w-full">
+    <div className="relative bg-gradient-to-b from-[#4B4D4F] to-[#4B4D4F33] p-0.5 rounded-2xl w-[360px] max-sm:w-full min-h-96">
+      <div className="flex-center flex-col gap-2 p-7 bg-gradient-to-b from-[#171532] to-[#08090D] rounded-lg border-2 border-primary-200/50 flex-1 sm:basis-1/2 w-full">
         <div>
           {/* Type Badge */}
           <div
             className={cn(
-              "absolute top-0 right-0 w-fit px-4 py-2 rounded-bl-lg",
+              "absolute top-1 right-0.5 w-fit px-4 py-2 rounded-bl-lg rounded-tr-lg",
               badgeColor
             )}
           >
@@ -87,7 +87,7 @@ const InterviewCard = async ({
           </p>
         </div>
 
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between mt-10">
           <DisplayTechIcons techStack={techstack ?? []} />
 
           <Button className="w-fit !bg-primary-200 !text-dark-100 hover:!bg-primary-200/80 !rounded-full !font-bold px-5 cursor-pointer min-h-10">
