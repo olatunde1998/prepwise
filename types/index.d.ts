@@ -1,12 +1,14 @@
+type CategoryScore = {
+  name: string;
+  score: number;
+  comment: string;
+};
+
 interface Feedback {
   id: string;
   interviewId: string;
   totalScore: number;
-  categoryScores: Array<{
-    name: string;
-    score: number;
-    comment: string;
-  }>;
+  categoryScores: CategoryScore[];
   strengths: string[];
   areasForImprovement: string[];
   finalAssessment: string;
