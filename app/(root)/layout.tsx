@@ -12,7 +12,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
   const token = session?.accessToken as string;
 
   if (!token || !userId) {
-    redirect("/");
+    redirect("/sign-in");
   }
 
   return (
