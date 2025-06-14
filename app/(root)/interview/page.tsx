@@ -1,12 +1,17 @@
 import { getUserById } from "@/app/actions";
+import { redirect } from "next/navigation";
 import Agent from "@/components/Agent";
 import { auth } from "@/auth";
 
 const Page = async () => {
   const session = await auth();
   const userId = session?.user?.id as string;
+  const token = session?.accessToken as string;
   const user = await getUserById(userId);
-  console.log(user, "Fetched user data here ===");
+
+  if (!token || !userId) {
+    redirect("/");
+  }
 
   return (
     <>
