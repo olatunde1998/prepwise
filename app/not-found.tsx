@@ -10,7 +10,7 @@ export default function NotFound() {
           <p className="text-[#CBD5E1] text-3xl font-medium max-w-[250px] mx-auto md:max-w-none">
             Sorry, we couldn&apos;t find this page.
           </p>
-          <p className="max-w-[250px]  mx-auto md:max-w-none text-lg text-gray-600 dark:text-slate-400 mt-4 mb-8 font-light">
+          <p className="max-w-[250px] mx-auto md:max-w-none text-lg text-gray-600 dark:text-slate-400 mt-4 mb-8 font-light">
             But don&apos;t worry, you can find plenty of other things on our
             homepage.
           </p>
