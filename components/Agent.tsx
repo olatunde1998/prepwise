@@ -169,7 +169,7 @@ const Agent = ({
         <div className="bg-gradient-to-b from-[#4B4D4F] to-[#4B4D4F33] p-0.5 rounded-2xl flex-1 sm:basis-1/2 w-full h-[400px] max-md:hidden">
           <div className="flex flex-col gap-2 justify-center items-center p-7 bg-gradient-to-b from-[#1A1C20] to-[#08090D] rounded-2xl min-h-full">
             <Image
-              src="/user-avatar.png"
+              src="/rasheed-img.jpeg"
               alt="profile-image"
               width={539}
               height={539}
