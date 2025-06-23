@@ -1,9 +1,9 @@
-import Link from "next/link";
-import Image from "next/image";
-import { ReactNode } from "react";
 import { redirect } from "next/navigation";
-import "../globals.css";
+import { ReactNode } from "react";
+import Image from "next/image";
 import { auth } from "@/auth";
+import Link from "next/link";
+import "../globals.css";
 
 
 const Layout = async ({ children }: { children: ReactNode }) => {
