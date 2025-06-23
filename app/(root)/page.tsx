@@ -1,33 +1,35 @@
-import Link from "next/link";
-import Image from "next/image";
-
+"use client";
+import { RequirementForm } from "@/components/RequirementForm";
 import InterviewCard from "@/components/InterviewCard";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { getUserById } from "../actions";
-import { auth } from "@/auth";
-
+import { useSession } from "next-auth/react";
+import { Modal } from "@/components/Modal";
 import {
   getInterviewsByUserId,
   getLatestInterviews,
 } from "@/lib/actions/general.action";
-import { redirect } from "next/navigation";
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
-export default async function Home() {
-  const session = await auth();
-  const token = session?.accessToken as string;
+export default function Home() {
+  const [showRequirementForm, setShowRequirementForm] = useState(false);
+  const { data: session } = useSession();
   const userId = session?.user?.id as string;
 
-  if (!token || !userId) {
-    redirect("/sign-in");
-  }
+  const { data: userInterviews } = useQuery({
+    queryKey: ["userInterviews", userId],
+    queryFn: () => getInterviewsByUserId(userId),
+    enabled: !!userId,
+  });
 
-  const user = await getUserById(userId);
-
-  const [userInterviews, allInterview] = await Promise.all([
-    getInterviewsByUserId(user?.id!),
-    getLatestInterviews({ userId: user?.id! }),
-  ]);
-
+  const { data: allInterview } = useQuery({
+    queryKey: ["latestInterviews", userId],
+    queryFn: () => getLatestInterviews({ userId }),
+    enabled: !!userId,
+  });
+  
   const hasPastInterviews = userInterviews?.length! > 0;
   const hasUpcomingInterviews = allInterview?.length! > 0;
 
@@ -39,13 +41,20 @@ export default async function Home() {
           <p className="text-lg">
             Practice real interview questions & get instant feedback
           </p>
-
-          <Button
-            asChild
-            className="w-fit !bg-primary-200 !text-dark-100 hover:!bg-primary-200/80 !rounded-full !font-bold px-5 cursor-pointer min-h-10 max-sm:w-full"
-          >
-            <Link href="/interview">Start an Interview</Link>
-          </Button>
+          <div className="flex flex-row gap-4 max-sm:flex-col">
+            <Button
+              asChild
+              className="w-fit !bg-primary-200 !text-dark-100 hover:!bg-primary-200/80 !rounded-full !font-bold px-5 cursor-pointer min-h-10 max-sm:w-full"
+            >
+              <Link href="/interview">Start an Interview</Link>
+            </Button>
+            <div
+              className="text-center flex  items-center text-sm   w-fit bg-primary-200 text-dark-100 hover:bg-primary-200/80 rounded-full font-bold px-5 cursor-pointer min-h-10 max-sm:w-full"
+              onClick={() => setShowRequirementForm(true)}
+            >
+              Start an Interview
+            </div>
+          </div>
         </div>
 
         <Image
@@ -65,7 +74,7 @@ export default async function Home() {
             userInterviews?.map((interview) => (
               <InterviewCard
                 key={interview.id}
-                userId={user?.id}
+                userId={userId}
                 interviewId={interview.id}
                 role={interview.role}
                 type={interview.type}
@@ -87,7 +96,7 @@ export default async function Home() {
             allInterview?.map((interview) => (
               <InterviewCard
                 key={interview.id}
-                userId={user?.id}
+                userId={userId}
                 interviewId={interview.id}
                 role={interview.role}
                 type={interview.type}
@@ -100,6 +109,16 @@ export default async function Home() {
           )}
         </div>
       </section>
+
+      <Modal
+        show={showRequirementForm}
+        onClose={() => setShowRequirementForm(false)}
+      >
+        <RequirementForm
+          setShowRequirementForm={setShowRequirementForm}
+          userId={userId}
+        />
+      </Modal>
     </>
   );
 }
