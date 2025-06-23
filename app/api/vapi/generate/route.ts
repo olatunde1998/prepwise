@@ -41,7 +41,7 @@ export async function POST(request: Request) {
     });
 
     return Response.json(
-      { success: true, interview: newInterview },
+      { success: true, interview: newInterview, message: "Interview created successfully!" },
       { status: 200 }
     );
   } catch (error) {
