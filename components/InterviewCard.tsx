@@ -1,14 +1,23 @@
-import dayjs from "dayjs";
-import Link from "next/link";
-import Image from "next/image";
-
-import { Button } from "./ui/button";
-import DisplayTechIcons from "./DisplayTechIcons";
-
+"use client";
 import { getFeedbackByInterviewId } from "@/lib/actions/general.action";
 import { cn, getRandomInterviewCover } from "@/lib/utils";
+import DisplayTechIcons from "./DisplayTechIcons";
+import { useQuery } from "@tanstack/react-query";
+import { Button } from "./ui/button";
+import Image from "next/image";
+import Link from "next/link";
+import dayjs from "dayjs";
 
-const InterviewCard = async ({
+interface InterviewCardProps {
+  interviewId: string;
+  userId: string;
+  role: string;
+  type: string;
+  techstack: string[];
+  createdAt?: Date | string;
+}
+
+const InterviewCard = ({
   interviewId,
   userId,
   role,
@@ -16,13 +25,11 @@ const InterviewCard = async ({
   techstack,
   createdAt,
 }: InterviewCardProps) => {
-  const feedback =
-    userId && interviewId
-      ? await getFeedbackByInterviewId({
-          interviewId,
-          userId,
-        })
-      : null;
+  const { data: feedback } = useQuery({
+    queryKey: ["feedback", interviewId, userId],
+    queryFn: () => getFeedbackByInterviewId({ interviewId, userId }),
+    enabled: !!userId && !!interviewId,
+  });
 
   const normalizedType = /mix/gi.test(type ?? "") ? "Mixed" : type ?? "Unknown";
   const badgeColorMap: Record<string, string> = {
@@ -40,7 +47,7 @@ const InterviewCard = async ({
     <div className="relative bg-gradient-to-b from-[#4B4D4F] to-[#4B4D4F33] p-0.5 rounded-2xl w-[360px] max-sm:w-full min-h-96">
       <div className="flex-center flex-col gap-2 p-7 bg-gradient-to-b from-[#171532] to-[#08090D] rounded-lg border-2 border-primary-200/50 flex-1 sm:basis-1/2 w-full">
         <div>
-          {/* Type Badge */}
+          {/* ======Type Badge ====== */}
           <div
             className={cn(
               "absolute top-1 right-0.5 w-fit px-4 py-2 rounded-bl-lg rounded-tr-lg",
@@ -50,7 +57,7 @@ const InterviewCard = async ({
             <p className="text-sm font-semibold capitalize">{normalizedType}</p>
           </div>
 
-          {/* Cover Image */}
+          {/* ======= Cover Image ======= */}
           <Image
             src={getRandomInterviewCover()}
             alt="cover-image"
@@ -59,10 +66,10 @@ const InterviewCard = async ({
             className="rounded-full object-fit size-[90px]"
           />
 
-          {/* Interview Role */}
+          {/* ====== Interview Role ====== */}
           <h3 className="mt-5 capitalize">{role} Interview</h3>
 
-          {/* Date & Score */}
+          {/* ===== Date & Score ===== */}
           <div className="flex flex-row gap-5 mt-3">
             <div className="flex flex-row gap-2">
               <Image
@@ -80,7 +87,7 @@ const InterviewCard = async ({
             </div>
           </div>
 
-          {/* Feedback or Placeholder Text */}
+          {/* ===== Feedback or Placeholder Text ====== */}
           <p className="line-clamp-2 mt-5">
             {feedback?.finalAssessment ||
               "You haven't taken this interview yet. Take it now to improve your skills."}
