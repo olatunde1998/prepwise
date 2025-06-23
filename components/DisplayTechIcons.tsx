@@ -1,13 +1,18 @@
+"use client";
 import Image from "next/image";
-
 import { cn, getTechLogos } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
 
-const DisplayTechIcons = async ({ techStack }: TechIconProps) => {
-  const techIcons = await getTechLogos(techStack);
+const DisplayTechIcons = ({ techStack }: TechIconProps) => {
+  const { data: techIcons } = useQuery({
+    queryKey: ["getInterviewsByUserId"],
+    queryFn: () => getTechLogos(techStack),
+    enabled: techStack.length > 0,
+  });
 
   return (
     <div className="flex flex-row">
-      {techIcons.slice(0, 3).map(({ tech, url }, index) => (
+      {techIcons?.slice(0, 3).map(({ tech, url }, index) => (
         <div
           key={tech}
           className={cn(
