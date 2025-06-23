@@ -2,7 +2,6 @@
 import { RequirementForm } from "@/components/RequirementForm";
 import InterviewCard from "@/components/InterviewCard";
 import { useQuery } from "@tanstack/react-query";
-import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import { Modal } from "@/components/Modal";
 import {
@@ -11,7 +10,6 @@ import {
 } from "@/lib/actions/general.action";
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Home() {
   const [showRequirementForm, setShowRequirementForm] = useState(false);
@@ -42,12 +40,6 @@ export default function Home() {
             Practice real interview questions & get instant feedback
           </p>
           <div className="flex flex-row gap-4 max-sm:flex-col">
-            <div
-              className="text-center flex items-center justify-center text-sm   w-fit bg-primary-200 text-dark-100 hover:bg-primary-200/80 rounded-full font-bold px-5 cursor-pointer min-h-10 max-sm:w-full"
-              onClick={() => setShowRequirementForm(true)}
-            >
-              Start an Interview
-            </div>
             <div
               className="text-center flex items-center justify-center text-sm   w-fit bg-primary-200 text-dark-100 hover:bg-primary-200/80 rounded-full font-bold px-5 cursor-pointer min-h-10 max-sm:w-full"
               onClick={() => setShowRequirementForm(true)}
