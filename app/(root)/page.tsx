@@ -29,7 +29,7 @@ export default function Home() {
     queryFn: () => getLatestInterviews({ userId }),
     enabled: !!userId,
   });
-  
+
   const hasPastInterviews = userInterviews?.length! > 0;
   const hasUpcomingInterviews = allInterview?.length! > 0;
 
@@ -42,14 +42,14 @@ export default function Home() {
             Practice real interview questions & get instant feedback
           </p>
           <div className="flex flex-row gap-4 max-sm:flex-col">
-            <Button
-              asChild
-              className="w-fit !bg-primary-200 !text-dark-100 hover:!bg-primary-200/80 !rounded-full !font-bold px-5 cursor-pointer min-h-10 max-sm:w-full"
-            >
-              <Link href="/interview">Start an Interview</Link>
-            </Button>
             <div
-              className="text-center flex  items-center text-sm   w-fit bg-primary-200 text-dark-100 hover:bg-primary-200/80 rounded-full font-bold px-5 cursor-pointer min-h-10 max-sm:w-full"
+              className="text-center flex items-center justify-center text-sm   w-fit bg-primary-200 text-dark-100 hover:bg-primary-200/80 rounded-full font-bold px-5 cursor-pointer min-h-10 max-sm:w-full"
+              onClick={() => setShowRequirementForm(true)}
+            >
+              Start an Interview
+            </div>
+            <div
+              className="text-center flex items-center justify-center text-sm   w-fit bg-primary-200 text-dark-100 hover:bg-primary-200/80 rounded-full font-bold px-5 cursor-pointer min-h-10 max-sm:w-full"
               onClick={() => setShowRequirementForm(true)}
             >
               Start an Interview
