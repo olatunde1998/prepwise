@@ -1,6 +1,6 @@
 import SessionProviderPage from "@/providers/session-providers";
-import type { Metadata } from "next";
 import { Mona_Sans } from "next/font/google";
+import type { Metadata } from "next";
 import { Toaster } from "sonner";
 import "./globals.css";
 
@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={`${monaSans.variable} antialiased pattern`}>
         <SessionProviderPage>{children}</SessionProviderPage>
-        <Toaster />
+        <Toaster richColors={true} position="top-center" />
       </body>
     </html>
   );
