@@ -144,7 +144,7 @@ export function RequirementForm({
                   Loading...
                 </span>
               ) : (
-                "Save changes"
+                "Save"
               )}
             </Button>
           </div>
