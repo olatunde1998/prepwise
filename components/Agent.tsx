@@ -1,13 +1,13 @@
 "use client";
-
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-
-import { cn } from "@/lib/utils";
-import { vapi } from "@/lib/vapi.sdk";
-import { interviewer } from "@/constants";
 import { createFeedback } from "@/lib/actions/general.action";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { interviewer } from "@/constants";
+import { vapi } from "@/lib/vapi.sdk";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+
+
 
 enum CallStatus {
   INACTIVE = "INACTIVE",
@@ -148,7 +148,7 @@ const Agent = ({
   return (
     <>
       <div className="flex sm:flex-row flex-col gap-10 items-center justify-between w-full">
-        {/* AI Interviewer Card */}
+        {/* ==== AI Interviewer Card====== */}
         <div className="flex items-center justify-center flex-col gap-2 p-7 h-[400px] bg-gradient-to-b from-[#171532] to-[#08090D] rounded-lg border-2 border-primary-200/50 flex-1 sm:basis-1/2 w-full">
           <div className="z-10 flex items-center justify-center bg-gradient-to-l from-[#FFFFFF] to-[#CAC5FE] rounded-full size-[120px] relative">
             <Image
@@ -165,7 +165,7 @@ const Agent = ({
           <h3 className="text-center text-primary-100 mt-5">AI Interviewer</h3>
         </div>
 
-        {/* User Profile Card */}
+        {/* ====== User Profile Card ======== */}
         <div className="bg-gradient-to-b from-[#4B4D4F] to-[#4B4D4F33] p-0.5 rounded-2xl flex-1 sm:basis-1/2 w-full h-[400px] max-md:hidden">
           <div className="flex flex-col gap-2 justify-center items-center p-7 bg-gradient-to-b from-[#1A1C20] to-[#08090D] rounded-2xl min-h-full">
             <Image
