@@ -69,7 +69,7 @@ export function RequirementForm({
   };
 
   return (
-    <div className="w-full md:min-w-[425px] p-5 dark:border-muted bg-background rounded-lg mx-auto mb-4">
+    <div className="w-full md:min-w-[425px] p-5 dark:border-muted bg-gradient-to-b from-[#171532] to-[#08090D] rounded-lg mx-auto mb-4">
       <section className="sm:max-w-[425px]">
         <div>
           <div className="flex items-center justify-between mb-4">
@@ -137,7 +137,11 @@ export function RequirementForm({
             >
               Cancel
             </div>
-            <Button type="submit" className="cursor-pointer" disabled={isLoading}>
+            <Button
+              type="submit"
+              className="cursor-pointer"
+              disabled={isLoading}
+            >
               {isLoading ? (
                 <span className="flex items-center gap-1">
                   <Loader2 className="mr-2 h-4 w-4 animate-spin duration-500" />
