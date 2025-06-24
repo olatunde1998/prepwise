@@ -44,14 +44,14 @@ const SignUp = () => {
       router.push("/sign-in");
     } catch (error) {
       console.log(error);
-      toast.error(`There was an error: ${error}`);
+      toast.error("oops! error occured");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="bg-gradient-to-b from-[#4B4D4F] to-[#4B4D4F33] p-0.5 rounded-2xl w-fit lg:min-w-[566px]">
+    <div className="bg-gradient-to-b from-[#4B4D4F] to-[#4B4D4F33] p-0.5 rounded-2xl w-[95%] md:w-[60%] lg:w-fit lg:min-w-[566px]">
       <div className="flex flex-col gap-6 card py-14 px-10">
         <div className="flex flex-row gap-2 justify-center">
           <Image src="/logo.svg" alt="logo" height={32} width={38} />
